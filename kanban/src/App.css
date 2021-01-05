@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Robobto', sans-serif;
+}
+
+body {
+  background-color: black;
+}
+
+.App {
+  color: #ffffff;
+}
+/*# sourceMappingURL=App.css.map */
