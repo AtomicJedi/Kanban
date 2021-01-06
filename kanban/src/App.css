@@ -7,10 +7,11 @@
 }
 
 body {
-  background-color: black;
+  background-color: #9b9b9b;
 }
 
-.App {
-  color: #ffffff;
+.App_container {
+  width: 1833px;
+  height: 1000px;
 }
 /*# sourceMappingURL=App.css.map */
