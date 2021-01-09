@@ -4,19 +4,18 @@ import InBoardSpase from './../routs/inBoard/inBoardSpase.js'
 import Headr from './../routs/header.js'
 // import './MainComponentClass.sass'
 
+let header = () => <Headr />
 
 function MainComponent() {
-  let header = () => <Headr />
+
   console.log(header)
   return (
     <Router>
       <div className="">
-        {header()}
-          <Switch> 
-            <Route exact path="/inBoard" component={InBoardSpase} />
-          </Switch>
-       
-
+        <Switch>
+          <Route exact path="/" component={header} />
+          <Route exact path="/inBoard" component={InBoardSpase} />
+        </Switch>
       </div>
     </Router>
 
