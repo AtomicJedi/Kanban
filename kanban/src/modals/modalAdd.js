@@ -6,8 +6,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Headr from './../routs/header.js'
 
-export default function FormDialog() {
+export default function FormDialog(...props) {
+
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -19,17 +21,19 @@ export default function FormDialog() {
   };
 
   const [input, setInput] = useState()
-  console.log(input)
-  const addTask = (e) =>{
-      const {value} = e.target.value
+
+  console.log(props)
+
+  const addInput = (e, {...addBoard}) =>{
+    console.log({addBoard})
+      const {value} = e.target
     if (value) {
         setInput({ input: value })
-    //   this.props.addTask(input);
-     setInput({ input: '' }); 
-    }
-    console.log(e.target.value)
 
+    }
 }
+
+// function frog () {<Headr input={input} addBoard={addInput} ></Headr>}
 
   return (
     <div>
@@ -49,14 +53,14 @@ export default function FormDialog() {
             label="Name"
             type="string"
             fullWidth
-            onChange={addTask}
+            onChange={addInput}
            />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={ addInput, handleClose } color="primary">
             Create
           </Button>
         </DialogActions>
