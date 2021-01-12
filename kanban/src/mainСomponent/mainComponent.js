@@ -8,7 +8,6 @@ let header = () => <Headr />
 
 function MainComponent() {
 
-  console.log(header)
   return (
     <Router>
       <div className="">

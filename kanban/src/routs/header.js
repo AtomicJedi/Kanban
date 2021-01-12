@@ -6,26 +6,42 @@ import ModalAdd from './../modals/modalAdd.js'
 import Board from './../board/board.js'
 
 
-function Headr(...props) {
+function Headr({ ...props }) {
 
-  const [boards, setBoard] = useState([{title: 'frog'} ])
+  const [boards, setBoard] = useState([])
+  console.log(boards)
 
   const addBoard = (board) => {
-    console.log(boards)
-    setBoard(({ boards }) => ({ boards: [...boards, { id: boards.length, title: board }] }))
-  }
-  console.log(boards)
+    console.log(board)
+    setBoard((prevBoards ) => ( prevBoards = [{ title: board, id: Date.now()  }] ))
+    // setBoard( (prev, setBoard) => prev + setBoard() ) 
+   }
+
+  // const addBoard = (board) => {
+  //   console.log(boards)
+  //   setBoard(({ boards }) => ({ boards: [...boards, { id: boards.length, title: board }] }))
+  // }
+
 
   return (
     <div className="">
       <Board
-      // textBord={Headr.boards.board.title}
+      
+      textBord={boards}
       />
       <ul className="MainComponentClass">
         <li className="Create_plate">
-          <ModalAdd 
-            addBoard={addBoard}
+          <ModalAdd
+            addBoardprops={addBoard}
           />
+        </li>
+        <li>
+          { 
+            // boards.map( board =>
+            // (<Board
+            //   textBord={board}
+            // />))
+            }
         </li>
       </ul>
     </div>

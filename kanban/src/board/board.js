@@ -2,10 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+// import CardMedia from '@material-ui/core/CardMedia';
+// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
@@ -18,7 +18,8 @@ const useStyles = makeStyles({
         maxHeight: 300,
     },
     MuiCardActionArea: {
-        height: 200
+        height: 200,
+        display: 'flex'
     },
     MuiTypography: {
         display: 'flex',
@@ -28,17 +29,23 @@ const useStyles = makeStyles({
 
 
 
-export default function MediaCard(addBoard) {
+const MediaCard = ({ textBord }) => {
+
     const classes = useStyles();
 
+    // let cox = title.title
+    // console.log(cox)
     return (
         <Card className={classes.root}>
-            <CardActionArea className={classes.MuiCardActionArea}>
+            <CardActionArea className={classes.MuiCardActionArea} href="/inBoard">
 
                 <CardContent>
-                    <Typography className={classes.MuiTypography} gutterBottom variant="h5" component="h2">
-                        Hare Krishna!!!
-          </Typography>
+
+                    {textBord.map(title => 
+                    < Typography title={title} className={classes.MuiTypography} gutterBottom variant="h5" component="h2">
+                        {title.title}
+                    </Typography>)}
+
                     {/* <Typography variant="body2" color="textSecondary" component="p">
             Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
             across all continents except Antarctica
@@ -53,7 +60,8 @@ export default function MediaCard(addBoard) {
           Learn More
         </Button>
       </CardActions> */}
-        </Card>
+        </Card >
     );
 }
 
+export default MediaCard;

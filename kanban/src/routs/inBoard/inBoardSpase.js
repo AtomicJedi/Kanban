@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import uuid from 'react-uuid'
 

@@ -6,9 +6,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Headr from './../routs/header.js'
 
-export default function FormDialog(...props) {
+
+export default function FormDialog(props) {
 
   const [open, setOpen] = useState(false);
 
@@ -20,20 +20,21 @@ export default function FormDialog(...props) {
     setOpen(false);
   };
 
-  const [input, setInput] = useState()
+  const hendleAddBoard = props.addBoardprops
+  const handleCloseAdd = () => {
+    hendleAddBoard(inputModalAdd)
+    setOpen(false);
+  }
 
-  console.log(props)
+  const [inputModalAdd, setInput] = useState('')
 
-  const addInput = (e, {...addBoard}) =>{
-    console.log({addBoard})
+  const addInputModal = (e) =>{
+    e.preventDefault()
       const {value} = e.target
     if (value) {
-        setInput({ input: value })
-
+        setInput( value )
     }
-}
-
-// function frog () {<Headr input={input} addBoard={addInput} ></Headr>}
+  }
 
   return (
     <div>
@@ -53,14 +54,14 @@ export default function FormDialog(...props) {
             label="Name"
             type="string"
             fullWidth
-            onChange={addInput}
+            onChange={(e) => addInputModal(e, hendleAddBoard)}
            />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={ addInput, handleClose } color="primary">
+          <Button onClick={ handleCloseAdd } color="primary">
             Create
           </Button>
         </DialogActions>
@@ -68,4 +69,3 @@ export default function FormDialog(...props) {
     </div>
   );
 }
-// href="/inBoard"
