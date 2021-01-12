@@ -33,16 +33,14 @@ const MediaCard = ({ textBord }) => {
 
     const classes = useStyles();
 
-    // let cox = title.title
-    // console.log(cox)
     return (
         <Card className={classes.root}>
             <CardActionArea className={classes.MuiCardActionArea} href="/inBoard">
 
                 <CardContent>
 
-                    {textBord.map(title => 
-                    < Typography title={title} className={classes.MuiTypography} gutterBottom variant="h5" component="h2">
+                    {textBord.map((title, key) => 
+                    < Typography className={classes.MuiTypography} gutterBottom variant="h5" component="h2">
                         {title.title}
                     </Typography>)}
 

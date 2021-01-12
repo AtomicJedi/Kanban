@@ -6,29 +6,24 @@ import ModalAdd from './../modals/modalAdd.js'
 import Board from './../board/board.js'
 
 
-function Headr({ ...props }) {
+function Headr() {
 
-  const [boards, setBoard] = useState([])
+  const localStorageState = JSON.parse(localStorage.getItem('boards')) || []
+
+  const [boards, setBoard] = useState([...localStorageState])
   console.log(boards)
 
   const addBoard = (board) => {
     console.log(board)
-    setBoard((prevBoards ) => ( prevBoards = [{ title: board, id: Date.now()  }] ))
-    // setBoard( (prev, setBoard) => prev + setBoard() ) 
+    setBoard(( boards ) => ( [...boards, { title: board, key: Date.now()  }] ))
    }
 
-  // const addBoard = (board) => {
-  //   console.log(boards)
-  //   setBoard(({ boards }) => ({ boards: [...boards, { id: boards.length, title: board }] }))
-  // }
+   localStorage.setItem('boards', JSON.stringify(boards))
 
 
   return (
     <div className="">
-      <Board
-      
-      textBord={boards}
-      />
+
       <ul className="MainComponentClass">
         <li className="Create_plate">
           <ModalAdd
@@ -37,10 +32,11 @@ function Headr({ ...props }) {
         </li>
         <li>
           { 
-            // boards.map( board =>
-            // (<Board
-            //   textBord={board}
-            // />))
+            boards.map( (board, key) =>
+            (<Board
+              key={key}
+              textBord={boards}
+            />))
             }
         </li>
       </ul>
