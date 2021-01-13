@@ -15,14 +15,13 @@ a {
   display: -ms-flexbox;
   display: flex;
   margin-top: 5%;
-  background-color: #93f2ff;
   list-style-type: none;
 }
 
 .Create_plate {
+  margin-top: 10px;
   width: 150px;
   height: 150px;
-  border: 1px solid yellow;
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -34,5 +33,9 @@ a {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 28px;
+}
+
+.Bord_plate {
+  margin: 10px;
 }
 /*# sourceMappingURL=MainComponentClass.css.map */

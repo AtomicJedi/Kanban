@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import uuid from 'react-uuid'
+import { useParams } from 'react-router'
+import ModalAddColumn from '../../modals/modalAddColumn.js'
+import ModalAddTask from '../../modals/modalAddTask.js'
+
+
+
+
+// const localStorageState = JSON.parse(localStorage.getItem('boards')) || []
+// [...localStorageState]
+
 
 const itemsFromBackend = [
   { id: uuid(), content: "First task" },
@@ -10,6 +19,8 @@ const itemsFromBackend = [
   { id: uuid(), content: "Fourth task" },
   { id: uuid(), content: "Fifth task" }
 ];
+
+// localStorage.setItem('boards', JSON.stringify(boards))
 
 const columnsFromBackend = {
   [uuid()]: {
@@ -30,7 +41,7 @@ const columnsFromBackend = {
   }
 };
 
-const onDragEnd = (result, columns, setColumns) => {
+const onDragEnd = (result, columns, setColumns ) => {
   if (!result.destination) return;
   const { source, destination } = result;
 
@@ -67,10 +78,46 @@ const onDragEnd = (result, columns, setColumns) => {
   }
 };
 
-function InBoardSpase() {
-  const [columns, setColumns] = useState(columnsFromBackend);
+const InBoardSpase = () => {
+
+  // const [columnsFromBackend, setСolumnsFromBackend] = useState()
+  // console.log(columnsFromBackend)
+  
+  const {key} = useParams();
+  // console.log(key)
+  const [columns, setColumns] = useState([]);
+
+  const addСolumns = (column) => {
+    console.log(column)
+    setColumns((columns) => (
+
+      [...columns, { name: column, key: uuid(), id: Date.now(), items: [] },     {[uuid()]: {
+        name: "Requested",
+        items: itemsFromBackend
+      },
+      [uuid()]: {
+        name: "To do",
+        items: []
+      },
+      [uuid()]: {
+        name: "In Progress",
+        items: []
+      },
+      [uuid()]: {
+        name: "Done",
+        items: []
+      }}]
+      
+      
+      
+      ))
+  }
+
   return (
     <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+
+      {key}
+      
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
@@ -133,6 +180,7 @@ function InBoardSpase() {
                             </Draggable>
                           );
                         })}
+                        <ModalAddTask />
                         {provided.placeholder}
                       </div>
                     );
@@ -143,6 +191,7 @@ function InBoardSpase() {
           );
         })}
       </DragDropContext>
+      <ModalAddColumn addColumnProps={addСolumns} />
     </div>
   );
 }

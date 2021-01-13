@@ -6,9 +6,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles({
+  MuiButton:{
+    height: 150,
+    'background-color': 'rgb(69, 108, 134)',
+    color: 'white'
+  }
+});
 
 export default function FormDialog(props) {
+  const classes = useStyles();
+
 
   const [open, setOpen] = useState(false);
 
@@ -38,7 +48,7 @@ export default function FormDialog(props) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button className={classes.MuiButton} variant="outlined" color="primary" onClick={handleClickOpen}>
         Create Board!
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

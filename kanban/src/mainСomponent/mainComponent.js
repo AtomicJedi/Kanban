@@ -1,21 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import InBoardSpase from './../routs/inBoard/inBoardSpase.js'
-import Headr from './../routs/header.js'
+import MainPage from '../routs/MainPage.js'
 // import './MainComponentClass.sass'
 
-let header = () => <Headr />
+let mainPage = () => <MainPage />
 
 function MainComponent() {
 
   return (
     <Router>
-      <div className="">
+      
         <Switch>
-          <Route exact path="/" component={header} />
-          <Route exact path="/inBoard" component={InBoardSpase} />
+          <Route exact path="/" component={mainPage} />
+          <Route exact path="/inBoard/:title" component={InBoardSpase} />
         </Switch>
-      </div>
+     
     </Router>
 
   )
