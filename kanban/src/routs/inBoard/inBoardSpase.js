@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import uuid from 'react-uuid'
-import { useParams } from 'react-router'
+// import { useParams } from 'react-router'
 import ModalAddColumn from '../../modals/modalAddColumn.js'
 import ModalAddTask from '../../modals/modalAddTask.js'
 
@@ -41,7 +41,7 @@ const columnsFromBackend = {
   }
 };
 
-const onDragEnd = (result, columns, setColumns ) => {
+const onDragEnd = (result, columns, setColumns) => {
   if (!result.destination) return;
   const { source, destination } = result;
 
@@ -80,44 +80,40 @@ const onDragEnd = (result, columns, setColumns ) => {
 
 const InBoardSpase = () => {
 
-  // const [columnsFromBackend, setСolumnsFromBackend] = useState()
-  // console.log(columnsFromBackend)
-  
-  const {key} = useParams();
-  // console.log(key)
+
   const [columns, setColumns] = useState([]);
 
+  console.log(columns)
+ 
   const addСolumns = (column) => {
     console.log(column)
     setColumns((columns) => (
-
-      [...columns, { name: column, key: uuid(), id: Date.now(), items: [] },     {[uuid()]: {
-        name: "Requested",
-        items: itemsFromBackend
-      },
-      [uuid()]: {
-        name: "To do",
-        items: []
-      },
-      [uuid()]: {
-        name: "In Progress",
-        items: []
-      },
-      [uuid()]: {
-        name: "Done",
-        items: []
-      }}]
-      
-      
-      
-      ))
+      [...columns, { 
+                    name: column, 
+                    key: uuid(), 
+                    id: Date.now(), 
+                    items: [ { content: "First task", id: uuid() } ] }]
+    ))
   }
+  
+  const addItems = (task) => {
+    let itemsColumn = columns.map(item => item.items)
+
+
+    setColumns((columns) => (
+      // console.log(itemsColumn)
+      [columns.items[{ content: task, id: uuid() }] ]
+
+    ))
+
+  }
+  // let itemsColumn = columns.map(item => (item.items.push({ content: task, id: uuid() })))
 
   return (
     <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
 
-      {key}
-      
+      {/* {key} */}
+
       <DragDropContext
         onDragEnd={result => onDragEnd(result, columns, setColumns)}
       >
@@ -180,7 +176,7 @@ const InBoardSpase = () => {
                             </Draggable>
                           );
                         })}
-                        <ModalAddTask />
+                        <ModalAddTask addTaskprops={addItems} />
                         {provided.placeholder}
                       </div>
                     );
