@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import InBoardSpase from './../routs/inBoard/inBoardSpase.js'
+import InBoardSpase from './../routs/inBoard'
 import MainPage from '../routs/MainPage.js'
 // import './MainComponentClass.sass'
 
