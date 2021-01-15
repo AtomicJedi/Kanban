@@ -2,13 +2,16 @@ import React from "react";
 import './App.sass';
 import MainComponent from './mainСomponent/mainComponent.js'
 
-function App() {
-  return (
-    <div className="App_container">
-          <MainComponent />
-    </div>
-  )
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-}
+const theme = createMuiTheme({ });
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <div className="App_container">
+      <MainComponent />
+    </div>
+  </ThemeProvider>
+)
 
 export default App;
