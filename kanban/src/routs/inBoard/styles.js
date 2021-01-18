@@ -13,6 +13,19 @@ const styles = (theme) => createStyles({
     alignItems: "center",
   },
 
+  columnTitle: {
+    width: `calc(100% - ${theme.spacing(1 * 2)}px)`,
+    margin: theme.spacing(1, 1, 0),
+    position: 'relative',
+  },
+
+  columnRemove: {
+    position: 'absolute',
+    right: 0,
+    top: '50%',
+    transform: 'translateY(-50%)',
+  },
+
   columnInner: {
     margin: 8,
   },
@@ -29,7 +42,15 @@ const styles = (theme) => createStyles({
     margin: "0 0 8px 0",
     minHeight: "50px",
     color: "white",
+    position: 'relative',
   },
+
+  recordRemove: {
+    position: 'absolute',
+    right: 0,
+    top: '50%',
+    transform: 'translateY(-50%)',
+  }
 });
 
 export default styles

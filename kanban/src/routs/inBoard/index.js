@@ -104,6 +104,10 @@ const InBoardSpase = () => {
     }))
   }, [setColumns])
 
+  const handleRemoveColumn = React.useCallback((columnUuid) => {
+    setColumns(columns => Object.fromEntries(Object.entries(columns).filter(([uuid]) => uuid !== columnUuid)))
+  }, [])
+
   const addItems = React.useCallback((task, uuidKey) => {
     setColumns(columns => ({
       ...columns,
@@ -113,6 +117,16 @@ const InBoardSpase = () => {
           ...columns[uuidKey].items,
           { content: task, id: uuid() }
         ]
+      }
+    }))
+  }, [setColumns])
+  
+  const handleRemoveTask = React.useCallback((columnUuid, recordId) => {
+    setColumns(columns => ({
+      ...columns,
+      [columnUuid]: {
+        ...columns[columnUuid],
+        items: columns[columnUuid].items.filter(({ id }) => id !== recordId)
       }
     }))
   }, [setColumns])
@@ -130,6 +144,8 @@ const InBoardSpase = () => {
             name={name}
             items={items}
             addItems={addItems}
+            onRemoveColumn={handleRemoveColumn}
+            onRemoveTask={handleRemoveTask}
           />
         ))}
       </DragDropContext>
